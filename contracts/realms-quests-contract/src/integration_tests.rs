@@ -45,7 +45,11 @@ mod tests {
             Uint128::new(1)
         );
 
-        let msg = InstantiateMsg { count: 1i32 };
+        let msg = InstantiateMsg { 
+            count: 1i32, 
+            realms: vec![], // Provide appropriate value for realms
+            quests: vec![]  // Provide appropriate value for quests
+        };
         let cw_template_contract_addr = app
             .instantiate_contract(
                 cw_template_id,
