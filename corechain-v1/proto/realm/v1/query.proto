@@ -1,0 +1,52 @@
+syntax = "proto3";
+package realm.v1;
+
+import "google/api/annotations.proto";
+import "realm/v1/genesis.proto";
+import "realm/v1/state.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+
+option go_package = "github.com/rollchains/corechain/x/realm/types";
+
+// Query provides defines the gRPC querier service.
+service Query {
+  // Params queries all parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/realm/v1/params";
+  }
+
+  rpc GetRealm(QueryGetRealmRequest) returns (QueryGetRealmResponse) {
+    option (google.api.http).get = "/realm/v1/realm/{id}";
+  };
+  rpc AllRealm(QueryAllRealmRequest) returns (QueryAllRealmResponse) {
+    option (google.api.http).get = "/realm/v1/realms";
+  };
+
+}
+
+// QueryParamsRequest is the request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is the response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params defines the parameters of the module.
+  Params params = 1;
+}
+
+message QueryGetRealmRequest {
+  uint64 id = 1;
+}
+
+message QueryGetRealmResponse {
+  uint64 id = 1;
+  Realm realm = 2;
+}
+
+message QueryAllRealmRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllRealmResponse {
+  repeated Realm realms = 1;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

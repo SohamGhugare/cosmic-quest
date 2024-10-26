@@ -1,0 +1,21 @@
+syntax = "proto3";
+package realm.v1;
+
+import "cosmos/orm/v1/orm.proto";
+
+option go_package = "github.com/rollchains/corechain/x/realm/types";
+
+// https://github.com/cosmos/cosmos-sdk/blob/main/orm/README.md
+
+message Realm {
+    option (cosmos.orm.v1.table) = {
+      id: 2;
+      primary_key: { fields: "id" auto_increment: true}
+      index: { id: 1 fields: "name" unique: true}
+    };
+
+    uint64 id  = 1;
+    // uint64 id = 1 [(cosmos.orm.v1.primary_key) = {auto_increment: true}];
+    string name = 2;
+}
+
