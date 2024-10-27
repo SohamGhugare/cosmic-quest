@@ -20,8 +20,9 @@ import {
   ButtonNotExist,
   ButtonRejected,
 } from "./Connect";
+import { useEffect, useRef } from "react";
 
-export function Wallet() {
+export function Wallet({ onConnect }: { onConnect: () => void }) {
   const {
     chain,
     status,
@@ -32,6 +33,15 @@ export function Wallet() {
     connect,
     openView,
   } = useChain(CHAIN_NAME);
+
+  const hasConnected = useRef(false);
+
+  useEffect(() => {
+    if (status === WalletStatus.Connected && !hasConnected.current) {
+      hasConnected.current = true;
+      onConnect();
+    }
+  }, [status, onConnect]);
 
   const ConnectButton = {
     [WalletStatus.Connected]: <ButtonConnected onClick={openView} />,
