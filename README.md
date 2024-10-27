@@ -6,7 +6,7 @@ Cosmic Quest transforms blockchain education into an immersive RPG experience wh
 
 ### Directories:
 - [corechain](./corechain-v1/) Contains the corechain code for spawning a chain (integrated with rollchains/spawn)
-- [contracts](./contracts/) Contains the CosmWasm contracts for Realms, Quests and NFTs
+- [contracts](./contracts/) Contains the CosmWasm contracts for Realms, Quests and NFTs **(has unit tests too)**
 - [frontend](./frontend/) The frontend website built using Interchain UI Kit with the Genesis Realm
 
 (other files are just degraded/deprecated versions of me experimenting with interchain)
