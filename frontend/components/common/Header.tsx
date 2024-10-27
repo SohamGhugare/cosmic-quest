@@ -68,7 +68,7 @@ export function Header() {
           <Text
             as="span"
             fontSize={{ mobile: "$3xl", tablet: "$8xl", desktop: "$8xl" }}
-            color={useColorModeValue("$primary500", "$primary200")}
+            color={useColorModeValue("$purple400", "$primary200")}
           >
             {' Doing '}
           </Text>

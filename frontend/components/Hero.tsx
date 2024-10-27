@@ -43,7 +43,7 @@ export function Hero({ onGetStarted }: { onGetStarted: () => void }) {
                     Quest 1
                     </Text>
                     <Text fontSize="$lg" textAlign="center">
-                    Create your own Web3 Wallet
+                    Create & Link your own Web3 Wallet
                     </Text>
                 </Box>
                 
