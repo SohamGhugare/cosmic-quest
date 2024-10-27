@@ -19,19 +19,21 @@ export function Hero({ onGetStarted }: { onGetStarted: () => void }) {
             maxWidth={"300px"}
             backgroundColor={useColorModeValue("$white", "$blackAlpha500")}
             padding={{ mobile: "$8", tablet: "$8", desktop: "$8"}}
-            borderWidth={ "thin" }
-            borderColor={"$black"}
-            borderStyle={"$solid"}
-            borderRadius={"$3xl"}
-            
+            // borderWidth={ "thin" }
+            // borderColor={"$black"}
+            // borderStyle={"$solid"}
+            // borderRadius={"$3xl"}
+            backgroundImage={"url('realm.png')"}
+            backgroundPosition={"center"}
+            backgroundSize={"cover"}
             >
             <Stack
                 direction="vertical"
             >
                 <Box
-                    padding={{ mobile: "$8", tablet: "$8", desktop: "$12"}}
+                    paddingTop={{ mobile: "$8", tablet: "$8", desktop: "$12"}}
                 >
-                    <Text fontSize="$4xl" fontWeight="bold" textAlign={"center"}>
+                    <Text fontSize="$9xl" fontWeight="$extrabold" textAlign={"center"}>
                     Genesis Realm
                     </Text>
                 </Box>
@@ -48,11 +50,12 @@ export function Hero({ onGetStarted }: { onGetStarted: () => void }) {
                 </Box>
                 
                 <Box
-                    padding={{ mobile: "$8", tablet: "$8", desktop: "$12"}}
+                    paddingBottom={{ mobile: "$8", tablet: "$8", desktop: "$12"}}
+                    paddingTop={{ mobile: "$4", tablet: "$4", desktop: "$4"}}
                     alignItems={"center"}
                     alignSelf={"center"}
                 >
-                    <Button onClick={onGetStarted}>Get Started</Button>
+                    <Button onClick={onGetStarted}>Let's Go</Button>
                 </Box>
             </Stack>
         </Box>

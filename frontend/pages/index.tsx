@@ -26,6 +26,18 @@ export default function Home() {
     <Layout>
       {showWallet ? (
         <>
+          <Box lineHeight={"$tall"}>
+            <Text fontSize="$xl" color="black" textAlign={"center"} fontWeight={"bold"}>
+              Instructions
+            </Text>
+            <Text fontSize="$lg" color="black" textAlign={"center"}>
+              1. Click on the Connect Wallet button below <br />
+              2. Select a wallet provider (like Keplr)  <br />
+              3. Create a new wallet and save the phrase (very important)  <br />
+              4. Boom! Done!
+            </Text>
+          </Box>
+          
           <Box marginBottom={"$15"}>
             <Wallet onConnect={handleWalletConnect} />
             {loading && (
