@@ -13,7 +13,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </Head>
       <Header />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </Container>
   );
 }

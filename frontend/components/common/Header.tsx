@@ -18,7 +18,7 @@ export function Header() {
   };
 
   return (
-    <>
+    <Box marginBottom={"$15"}>
       <Box display="flex" justifyContent="end" mb="$8">
         <Button
           intent="secondary"
@@ -65,6 +65,6 @@ export function Header() {
           </Text>
         </Text>
       </Box>
-    </>
+    </Box>
   );
 }
