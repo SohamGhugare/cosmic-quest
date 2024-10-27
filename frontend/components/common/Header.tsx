@@ -17,9 +17,24 @@ export function Header() {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
+  const handleEarlyAccessClick = () => {
+    window.location.href = "https://forms.gle/your-google-form-id";
+  };
+
   return (
     <Box marginBottom={"$15"}>
       <Box display="flex" justifyContent="end" mb="$8">
+        <Button
+          intent="secondary"
+          size="sm"
+          attributes={{
+            paddingX: 0,
+            marginX: "$5",
+          }}
+          onClick={handleEarlyAccessClick}
+        >
+          Early Access
+        </Button>
         <Button
           intent="secondary"
           size="sm"
