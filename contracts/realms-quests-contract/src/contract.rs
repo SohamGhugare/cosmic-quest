@@ -118,9 +118,11 @@ pub mod query {
     }
 }
 
+// unit tests
 #[cfg(test)]
 mod tests {
     use crate::state::QuestType;
+    use cosmwasm_std::Addr;
 
     use super::*;
     use cosmwasm_std::testing::{mock_dependencies, mock_env, mock_info};
@@ -132,8 +134,8 @@ mod tests {
 
         let msg = InstantiateMsg { 
             count: 17,
-            realms: vec![], // Provide appropriate values here
-            quests: vec![], // Provide appropriate values here
+            realms: vec![], 
+            quests: vec![], 
         };
         let info = mock_info("creator", &coins(1000, "earth"));
 
@@ -153,8 +155,8 @@ mod tests {
 
         let msg = InstantiateMsg { 
             count: 17,
-            realms: vec![], // Provide appropriate values here
-            quests: vec![], // Provide appropriate values here
+            realms: vec![], 
+            quests: vec![], 
         };
         let info = mock_info("creator", &coins(2, "token"));
         let _res = instantiate(deps.as_mut(), mock_env(), info, msg).unwrap();
@@ -176,8 +178,8 @@ mod tests {
 
         let msg = InstantiateMsg { 
             count: 17,
-            realms: vec![], // Provide appropriate values here
-            quests: vec![], // Provide appropriate values here
+            realms: vec![], 
+            quests: vec![], 
         };
         let info = mock_info("creator", &coins(2, "token"));
         let _res = instantiate(deps.as_mut(), mock_env(), info, msg).unwrap();
@@ -202,6 +204,7 @@ mod tests {
         assert_eq!(5, value.count);
     }
 
+    // Test adding a quest and querying it
     #[test]
     fn test_query_quest() {
         let mut deps = mock_dependencies();
@@ -253,6 +256,56 @@ mod tests {
         assert_eq!(quest.description, "Second quest");
         assert_eq!(quest.quest_type, QuestType::CodeCompletion);
         assert_eq!(quest.verification_data, "data2");
+    }
+
+    // test for adding a realm and querying it
+    #[test]
+    fn test_query_realm() {
+        let mut deps = mock_dependencies();
+        let env = mock_env();
+        let info = mock_info("creator", &[]);
+
+        // Initialize the contract with some realms and quests
+        let msg = InstantiateMsg {
+            count: 0,
+            realms: vec![
+                Realm {
+                    id: "realm1".to_string(),
+                    name: "Realm 1".to_string(),
+                    description: "First realm".to_string(),
+                    reward_nft: Addr::unchecked("nft1"),
+                },
+                Realm {
+                    id: "realm2".to_string(),
+                    name: "Realm 2".to_string(),
+                    description: "Second realm".to_string(),
+                    reward_nft: Addr::unchecked("nft2"),
+                },
+            ],
+            quests: vec![],
+        };
+
+        let _res = instantiate(deps.as_mut(), env.clone(), info.clone(), msg).unwrap();
+
+        // Query the first realm
+        let query_msg = QueryMsg::GetRealm { id: "realm1".to_string() };
+        let binary_response = query(deps.as_ref(), env.clone(), query_msg).unwrap();
+        let realm: Realm = from_json(&binary_response).unwrap();
+
+        assert_eq!(realm.id, "realm1");
+        assert_eq!(realm.name, "Realm 1");
+        assert_eq!(realm.description, "First realm");
+        assert_eq!(realm.reward_nft, Addr::unchecked("nft1")); // Convert to Addr
+
+        // Query the second realm
+        let query_msg = QueryMsg::GetRealm { id: "realm2".to_string() };
+        let binary_response = query(deps.as_ref(), env, query_msg).unwrap();
+        let realm: Realm = from_json(&binary_response).unwrap();
+
+        assert_eq!(realm.id, "realm2");
+        assert_eq!(realm.name, "Realm 2");
+        assert_eq!(realm.description, "Second realm");
+        assert_eq!(realm.reward_nft, Addr::unchecked("nft2")); // Convert to Addr
     }
     
 }

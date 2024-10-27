@@ -10,6 +10,7 @@ pub struct State {
     pub owner: Addr,
 }
 
+// The Realm state for storing all the realms
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq, JsonSchema)]
 pub struct Realm {
     pub id: String,
@@ -18,11 +19,13 @@ pub struct Realm {
     pub reward_nft: Addr,
 }
 
+// QuestTypes for storing the different types of quests
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq, JsonSchema)]
 pub enum QuestType {
     CodeCompletion,
 }
 
+// Quest state for storing all the quests
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq, JsonSchema)]
 pub struct Quest {
     pub id: String,
